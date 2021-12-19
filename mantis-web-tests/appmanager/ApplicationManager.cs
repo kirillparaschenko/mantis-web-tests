@@ -29,6 +29,7 @@ namespace mantis_web_tests
             loginHelper = new LoginHelper(this);
             managementHelper = new ManagementHelper(this, baseURL);
             projectHelper = new ProjectHelper(this);
+            API = new APIHelper(this);
 
         }
         ~ApplicationManager()
@@ -36,6 +37,7 @@ namespace mantis_web_tests
             try
             {
                 driver.Quit();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             }
             catch (Exception)
             {
@@ -82,5 +84,6 @@ namespace mantis_web_tests
                 return projectHelper;
             }
         }
+        public APIHelper API { get; set; }
     }
 }

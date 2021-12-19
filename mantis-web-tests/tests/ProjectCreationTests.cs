@@ -19,13 +19,18 @@ namespace mantis_web_tests
         [Test]
         public void ProjectCreationTest()
         {
+            AccountData account = new AccountData("administrator", "root");
             ProjectData project = new ProjectData("Test project");
 
-            List<ProjectData> oldProjects = app.Projects.GetProjectsList();
+            //List<ProjectData> oldProjects = app.Projects.GetProjectsList();
+
+            List<ProjectData> oldProjects = app.API.GetProjectList(account);
 
             app.Projects.Create(project);
 
-            List<ProjectData> newProjects = app.Projects.GetProjectsList();
+            //List<ProjectData> newProjects = app.Projects.GetProjectsList();
+
+            List<ProjectData> newProjects = app.API.GetProjectList(account);
             oldProjects.Add(project);
             oldProjects.Sort();
             newProjects.Sort();
